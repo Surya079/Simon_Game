@@ -29,15 +29,26 @@ body{
         height: 200px;
     }
 }
-#green{
+@media(max-width:400px){
+    .title{
+        font-size: 1.5rem;
+    }
+}
+.green{
     background-color: green;
 }
-#red{
+.red{
     background-color: red;
 }
-#yellow{
+.yellow{
     background-color: yellow;
 }
-#blue{
+.blue{
     background-color: blue;
+}
+.pressed{
+    background-color: gray;
+}
+.game-over{
+    background-color: rgb(227, 64, 64);
 }

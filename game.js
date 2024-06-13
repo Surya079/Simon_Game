@@ -1,21 +1,82 @@
-var ButtonColors = ["red","blue","yellow","green"]
+var buttonColours = ["red", "blue", "green", "yellow"];
 
-var GamePattern = []
+var gamePattern = [];
 
-function nextSequence(){
+var UserClickPattern = [];
 
-    let RandomNumber = Math.floor(Math.random() * 4);
+var started = false;
 
-    randomChooseColour = ButtonColors[RandomNumber];
+var level = 0;
+$(document).keypress(function(){
+    if(!started){
+        $(".title").text("Level " + level);
+        nextSequence();
+        started = true;
+    }
+})
+$(".box").on("click",function(){
+    var UserChosanColor = $(this).attr("id");
 
-    GamePattern.push(randomChooseColour);
+    UserClickPattern.push(UserChosanColor)
 
-    console.log(GamePattern);
+    Playsound(UserChosanColor);
+
+    AnimatePress(UserChosanColor)    
+    
+    Checkanswer(UserClickPattern.length-1);
+})
+
+
+function nextSequence() {
+    level++;
+    $(".title").text("Level " + level);
+
+    var randomNumber = Math.floor(Math.random() * 4);
+
+    var randomChosenColour = buttonColours[randomNumber];
+
+    gamePattern.push(randomChosenColour);
+
+    Playsound(randomChosenColour);
+    animate(randomChosenColour);
+    
 
 }
-nextSequence();
-var RandomChooseColour = "#" + GamePattern.toString();
-console.log(RandomChooseColour);
-$(document).on("keypress", function(event){
-    $(RandomChooseColour).fadeOut(100).fadeIn(100);
-})
+
+
+function Playsound(name){
+    var audio = new Audio("./sounds/"+ name +".mp3");
+    audio.play();
+   
+}
+
+function animate(name){
+    $("#" + name).fadeIn(100).fadeOut(100).fadeIn(100);
+}
+
+function AnimatePress(name){
+    $("#"+name).addClass("pressed");
+
+    setTimeout(function(){
+        $("#"+name).removeClass("pressed");
+    },100);
+}
+
+
+function Checkanswer(currentLevel){
+    if(gamePattern[currentLevel] === UserClickPattern[currentLevel]){
+        if (UserClickPattern.length == gamePattern.length){
+            setTimeout(function(){
+                nextSequence();
+            },1000);
+        }
+    }else{
+        $("body").addClass("game-over")
+        setTimeout(function(){
+            $("body").removeClass("game-over")
+        },200)
+
+        Playsound("wrong");
+        $(".title").text("Game Over, Press Any Key to Restart")
+    }
+}
