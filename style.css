@@ -23,6 +23,14 @@ body{
     border: 8px solid black;
     border-radius: 30px;
 }
+.Start{
+    font-family:'Press Start 2P', cursive ;
+    padding: 10px 20px 10px 20px;
+    font-size: 1rem;
+    background-color: rgb(234, 234, 234);
+    border: 1px solid black;
+}
+
 @media(min-width:500px){
     .box{
         width: 200px;

@@ -12,22 +12,32 @@ $(document).keypress(function(){
         $(".title").text("Level " + level);
         nextSequence();
         started = true;
+        $(".Start").hide();
     }
 })
-$(".box").on("click",function(){
+$(".Start").click(function(){
+    if(!started){
+        $(".title").text("Level " + level);
+        nextSequence();
+        started = true;
+        $(".Start").hide();
+    }
+})
+$(".box").click(function(){
     var UserChosanColor = $(this).attr("id");
 
     UserClickPattern.push(UserChosanColor)
 
     Playsound(UserChosanColor);
 
-    AnimatePress(UserChosanColor)    
+    AnimatePress(UserChosanColor)    ;
     
     Checkanswer(UserClickPattern.length-1);
 })
 
 
 function nextSequence() {
+    UserClickPattern = []
     level++;
     $(".title").text("Level " + level);
 
@@ -37,9 +47,11 @@ function nextSequence() {
 
     gamePattern.push(randomChosenColour);
 
+    
     Playsound(randomChosenColour);
     animate(randomChosenColour);
     
+
 
 }
 
@@ -65,7 +77,7 @@ function AnimatePress(name){
 
 function Checkanswer(currentLevel){
     if(gamePattern[currentLevel] === UserClickPattern[currentLevel]){
-        if (UserClickPattern.length == gamePattern.length){
+        if (UserClickPattern.length === gamePattern.length){
             setTimeout(function(){
                 nextSequence();
             },1000);
@@ -77,6 +89,16 @@ function Checkanswer(currentLevel){
         },200)
 
         Playsound("wrong");
-        $(".title").text("Game Over, Press Any Key to Restart")
-    }
+        $(".title").text("Game Over, Press Any Key to Restart");
+        Startover();
+        $(".Start").show();
+}
+   
+}
+
+function Startover(){
+    level = 0;
+    gamePattern = [];
+    started = false;
+    
 }
