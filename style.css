@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgba(10, 8, 60, 0.918);
+}
+.title{
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    padding: 30px;
+    line-height: 40px;
+    margin-top: 15px;
+    color: rgb(202, 202, 114);
+}
+.container{
+   text-align: center;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    display: inline-block;
+    margin: 10px;
+    border: 8px solid black;
+    border-radius: 30px;
+}
+@media(min-width:500px){
+    .box{
+        width: 200px;
+        height: 200px;
+    }
+}
+#green{
+    background-color: green;
+}
+#red{
+    background-color: red;
+}
+#yellow{
+    background-color: yellow;
+}
+#blue{
+    background-color: blue;
+}
