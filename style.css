@@ -63,7 +63,13 @@ body{
 .footer{
     text-align: center;
     color: aliceblue;
+   
 }
 footer{
     text-align: center;
+}
+
+.footer a{
+    text-decoration: none;
+    color: green;
 }
