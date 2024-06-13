@@ -60,3 +60,10 @@ body{
 .game-over{
     background-color: rgb(227, 64, 64);
 }
+.footer{
+    text-align: center;
+    color: aliceblue;
+}
+footer{
+    text-align: center;
+}
